@@ -8,7 +8,7 @@ export default NextAuth({
             type: 'oauth',
             authorization: {
                 url: process.env.PORTAIL_AUTHORIZATION_URI,
-                params: { scope: "*" },
+                params: { scope: "user-get-info user-get-assos" },
             },
             token: process.env.PORTAIL_TOKEN_URI,
             userinfo: process.env.PORTAIL_USER_INFO_URI,
