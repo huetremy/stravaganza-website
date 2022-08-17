@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
     providers: [
         {
             id: 'portail',
@@ -24,4 +25,15 @@ export default NextAuth({
             clientSecret: process.env.PORTAIL_CLIENT_SECRET,
         },
     ],
-});
+    callbacks: {
+        async jwt({ token, account }) {
+            // Persist OAuth access_token to the jwt token
+            if (account) {
+                token.accessToken = account.access_token;
+            }
+            return token;
+        },
+    }
+}
+
+export default NextAuth(authOptions);
