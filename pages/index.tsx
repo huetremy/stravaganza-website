@@ -2,10 +2,9 @@ import type { NextPage } from 'next'
 
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { ExtendedSession } from '../lib/session';
 
 const Home: NextPage = () => {
-  const { data: session } = useSession() as { data: ExtendedSession | null };
+  const { data: session } = useSession();
   if (session) {
     return (
       <>
