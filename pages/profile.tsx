@@ -3,11 +3,11 @@ import { getToken } from 'next-auth/jwt';
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const token = await getToken({ req });
-    console.log(JSON.stringify(token));
 
     const api_uri = `${process.env.PORTAIL_URI}api/v1/user/assos`;
-    var headers = new Headers();
-    headers.append("Authorization", `Bearer ${token?.accessToken}`);
+    var headers = new Headers({
+        "Authorization": `Bearer ${token?.accessToken}`,
+    });
     const res = await fetch(api_uri, { headers });
     const data = await res.json();
 
