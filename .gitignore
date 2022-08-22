@@ -38,3 +38,6 @@ next-env.d.ts
 
 # editors
 .vscode/
+
+# Storybook static generation
+storybook-static/
